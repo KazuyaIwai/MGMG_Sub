@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>MGMG LOGIN</title>
+  <!-- BootstrapのCSS読み込み -->
+  <link th:href="@{/dist/bootstrap/bootstrap.min.css}" rel="stylesheet" />
+  <!-- BootstrapのJS読み込み -->
+  <script th:src="@{/dist/bootstrap/bootstrap.min.js}"></script>
+  <style type="text/css">
+    body {
+      background-image: url(/img/login.jpg);
+      background-size: 100% auto;
+    }
+  </style>
+</head>
+
+<body>
+  <br /><br /><br /><br /><br />
+  <div class="container-sm">
+    <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">
+        <form th:action="@{/sign_in}" method="post" class="login">
+          <div class="form-group">
+            <input type="text" class="form-control" name="fullname" id="fullname" placeholder="login name"></input>
+            <input type="password" class="form-control" name="password" id="password" placeholder="password"></input>
+            <div class="container-sm">
+              <div class="row">
+                <div class="col-sm">
+                </div>
+                <div class="col-sm">
+                  <button type="submit" class="btn btn-outline-secondary">Login</button>
+                </div>
+                <div class="col-sm">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

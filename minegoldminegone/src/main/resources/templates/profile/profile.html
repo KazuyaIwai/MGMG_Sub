@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="layout">
+<head>
+<title>MGMG HOME</title>
+<script th:src="@{/js/graph.js}"></script>
+</head>
+<body>
+    <div layout:fragment="layout-contents">
+      <!-- <canvas id="er-graph-1"></canvas> -->
+      <div id="myselft-100-words" style="width:100%;"></div>
+      <script>GRAPH.initErGraph();</script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="layout">
+<head>
+<title>MGMG HOME</title>
+<!-- ffmpeg -i video.mp4 -c:v copy -c:a copy -f hls -hls_time 9 -hls_playlist_type vod -hls_segment_filename "video%3d.ts" video.m3u8 -->
+</head>
+<body>
+    <th:block layout:fragment="layout-contents">
+      <div class="container">
+        <div class="row">
+          <div class="d-flex justify-content-right">
+            <span class="h3">動画</span>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <!-- 前のページの戻る -->
+              <li class="page-item" th:classappend="${page.first} ? 'disabled' : ''">
+                  <a th:href="@{${path}(page=${page.number})}" class="page-link" href="#" tabindex="-1">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+              </li>
+              <!-- 総数とページあたりの件数をもとにページ分割 -->
+              <th:block th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+                  <th:block th:if="${i} < 20">
+                    <li class="page-item" th:classappend="(${i} == ${page.number - 1}) ? 'active' : ''">
+                      <a th:text="${i + 1}" th:href="@{${path}(page=${i + 1})}" class="page-link" href="#">3</a>
+                    </li>
+                  </th:block>
+              </th:block>
+            </ul>
+            
+            <ul class="pagination">
+              <!-- 総数とページあたりの件数をもとにページ分割 -->
+              <th:block th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+                  <th:block th:if="${i} >= 20">
+                    <li class="page-item" th:classappend="(${i} == ${page.number - 1}) ? 'active' : ''">
+                      <a th:text="${i + 1}" th:href="@{${path}(page=${i + 1})}" class="page-link" href="#">3</a>
+                    </li>
+                  </th:block>
+              </th:block>
+              <!-- 次のページへ進む -->
+              <li class="page-item" th:classappend="${page.last} ? 'disabled' : ''">
+                  <a th:href="@{${path}(page=${page.number + 2})}" class="page-link page-item" href="#" tabindex="-1">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="row">
+          <th:block th:each="vs : ${list}">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body d-flex justify-content-center" style="width: 360px;">
+                    <video class="w-100" th:src="@{|/vod/video/test/テスト/${vs.title}|}" controls></video>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <span th:text="${vs.title}"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </th:block>
+        </div>
+      </div>
+    </th:block>
+</body>
+</html>
